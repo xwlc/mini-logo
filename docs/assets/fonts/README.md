@@ -1,0 +1,36 @@
+# Fonts License
+
+> [!NOTE]
+> The following resources are under their terms and license respectively.
+
+- [Abandon](https://www.yourownfont.com/free-font-archive/effects-fonts/abandon)
+
+- Your Own Fonts [Anyfreak](https://yourownfont.com/free-font-archive/soft/anyfreak)
+- Your Own Fonts [BabyBalloon](https://yourownfont.com/free-font-archive/effects-fonts/baby-balloon)
+- Your Own Fonts [BackToSchool](https://yourownfont.com/free-font-archive/themed/back-to-school)
+- Your Own Fonts [BakeryRoast](https://yourownfont.com/free-font-archive/soft/bakery-roast)
+- Your Own Fonts [BlueTea](https://yourownfont.com/free-font-archive/soft/bluetea)
+- Your Own Fonts [Calvous](https://yourownfont.com/free-font-archive/big/calvous)
+- Your Own Fonts [Creamy](https://yourownfont.com/free-font-archive/greeting-card/creamy)
+- Your Own Fonts [DerekYOFF](https://yourownfont.com/font-shop/free-handwriting-fonts/derek-yoff)
+- Your Own Fonts [FluxArchitect](https://yourownfont.com/free-font-archive/themed/flux-architect)
+- Your Own Fonts [Gabriella](https://yourownfont.com/free-font-archive/themed/gabriella)
+- Your Own Fonts [Gremlins](https://yourownfont.com/free-font-archive/themed/gremlins)
+- Your Own Fonts [HeavyRain](https://yourownfont.com/free-font-archive/themed/heavy-rain)
+- Your Own Fonts [HomemadeSausage](https://yourownfont.com/free-font-archive/soft/homemade-sausage)
+- Your Own Fonts [KlaraYOFF](https://yourownfont.com/font-shop/free-handwriting-fonts/klara-yoff)
+- Your Own Fonts [LNFontYOFF](https://yourownfont.com/font-shop/free-handwriting-fonts/ln-font-yoff)
+- Your Own Fonts [MariaHandYOFF](https://yourownfont.com/font-shop/free-handwriting-fonts/maria-hand-yoff)
+- Your Own Fonts [MilkyHoney](https://yourownfont.com/free-font-archive/soft/Milkyhoney-44)
+- Your Own Fonts [Neonsans](https://yourownfont.com/free-font-archive/themed/Neonsans-153)
+- Your Own Fonts [Patchfun](https://yourownfont.com/free-font-archive/themed/Patchfun-165)
+- Your Own Fonts [SmileCandy](https://yourownfont.com/free-font-archive/greeting-card/smile-candy)
+- Your Own Fonts [SpookyCat](https://yourownfont.com/free-font-archive/soft/Spookycat-66)
+- Your Own Fonts [SquishyWhale](https://yourownfont.com/free-font-archive/soft/Squishywhale-67)
+- Your Own Fonts [Them](https://yourownfont.com/free-font-archive/crazy-fonts/Them-67)
+- Your Own Fonts [ThinkSmart](https://yourownfont.com/free-font-archive/greeting-card/think-smart)
+- Your Own Fonts [Turtles](https://yourownfont.com/free-font-archive/themed/turtles)
+- Your Own Fonts [Unranked](https://yourownfont.com/free-font-archive/big/Unranked-93)
+- Your Own Fonts [ValorieYOFF](https://yourownfont.com/font-shop/free-handwriting-fonts/valorie-yoff)
+- Your Own Fonts [VirgilYOFF](https://yourownfont.com/font-shop/free-handwriting-fonts/virgil-yoff)
+- Your Own Fonts [WickedGrit](https://yourownfont.com/free-font-archive/effects-fonts/wicked-grit)
