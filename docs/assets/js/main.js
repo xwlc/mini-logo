@@ -40,17 +40,10 @@ function updateTimeTitle(init) {
 
   if(updateTimeTitleSeconds % 300 == 0) {
     updateTimeTitleSeconds = 0; // 每五分钟更新一次标题
+    const random = Math.floor(Math.random() * 100);
     const title = document.querySelector(`head > title`);
-    const favicon = document.querySelector(`head > link`);
-    const random = Math.floor(Math.random() * 1000);
-    let idx1 = (random+10) % EMOJIS.length, idx2 = (random+25) % EMOJIS.length;
-    let idx3 = (random+55) % EMOJIS.length, idx4 = (random+85) % EMOJIS.length;
-    title.innerHTML = `${EMOJIS[idx2]} Mini Logo ${EMOJIS[idx3]} ${EMOJIS[idx4]}`;
-    let emoji = `
-      <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
-        <text y=%22.9em%22 font-size=%2290%22>${EMOJIS[idx1]}</text>
-      </svg>`.trim();
-    favicon.setAttribute(`href`, `data:image/svg+xml,${emoji}`);
+    let idx1 = (random+50) % EMOJIS.length, idx2 = (random+99) % EMOJIS.length;
+    title.innerHTML = ` Mini ${EMOJIS[idx1]} Logo ${EMOJIS[idx2]}`;
   }; updateTimeTitleSeconds++;
 
   if(init) { setInterval(updateTimeTitle, 1000); } // 每秒刷新时间
