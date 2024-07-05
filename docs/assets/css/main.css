@@ -30,13 +30,5 @@ body {
 
 #ganzhi {
   font-size: 1.5em; font-weight: 400;
-  align-items: center; justify-content: center;
-}
-
-#gzTimeShiCi {
-
-}
-
-#gzTimeYears {
-
+  display: grid; place-items: center;
 }
