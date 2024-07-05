@@ -37,7 +37,6 @@ const timezoneOffset = (function() {
 })();
 
 // https://drafts.csswg.org/css-color/#named-colors
-function padNum(val) { return val.toString().padStart(2, "0"); }
 function weaD(msg) { return `<a style='color: darkgray'>${msg}</a>` }
 function weaR(msg) { return `<a style='color: red'>${msg}</a>` }
 function weaG(msg) { return `<a style='color: limegreen'>${msg}</a>` }
@@ -46,7 +45,7 @@ function weaY(msg) { return `<a style='color: yellow'>${msg}</a>` }
 function weaP(msg) { return `<a style='color: darkorchid'>${msg}</a>` }
 function weaC(msg) { return `<a style='color: darkturquoise'>${msg}</a>` }
 
-let updateCyclesSeconds = 0, prevLunarMinute = 0;
+let updateCyclesSeconds = 0, prevLunarMinute = 0, repeatUpdateId;
 
 function updateTimeTitle(init) {
   const now = new Date(); let loc ={}, utc = {}, lunar, flag;
@@ -112,5 +111,14 @@ function updateTimeTitle(init) {
     title.innerHTML = ` Mini ${EMOJIS[idx1]} Logo ${EMOJIS[idx2]}`;
   }; updateCyclesSeconds++;
 
-  if(init) { setInterval(updateTimeTitle, 1000); } // 每秒刷新时间
+  if(init) { repeatUpdateId = setInterval(updateTimeTitle, 1000); } // 每秒刷新
 }
+
+function loadMiniLogoCreator() {
+  if(repeatUpdateId) clearInterval(repeatUpdateId);
+  window.removeEventListener('click', loadMiniLogoCreator);
+  const creator = getFullUrl(window.location.href, '/creator.html');
+  if(creator) { window.location.href = creator; }
+}
+
+window.addEventListener('click', loadMiniLogoCreator);
