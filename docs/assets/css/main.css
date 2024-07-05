@@ -5,7 +5,7 @@
  */
 
 :root {
-  --x-font-family: Merienda, Ubuntu, sans-serif;
+  --x-font-family: Ubuntu, sans-serif;
 }
 
 * {
@@ -13,16 +13,30 @@
 } /* .XXX 对应 class 可多次引用, #XXX 对应 id 仅可用一次 */
 
 body {
+  margin: 0; padding: 0; overflow: hidden;
   width: 100vw; height: 100vh; background-color: gray;
   display: flex; align-items: center; justify-content: center;
 }
 
-.workspace {
-  border: 6px solid; border-radius: 8px; border-color: greenyellow;
-  background-color: lightgray; width: 500px; height: 100px;
+#welcome {
+  border: 6px solid; border-radius: 8px; border-color: linen;
+  background-color: lightgray; width: 800px; height: 200px;
   display: flex; align-items: center; justify-content: center;
 }
 
-#showTime {
-font-size: 2em; font-weight: 400;
+#showTimeLoc, #showTimeUtc {
+  font-size: 2.5em; font-weight: 400;
+}
+
+#ganzhi {
+  font-size: 1.5em; font-weight: 400;
+  align-items: center; justify-content: center;
+}
+
+#gzTimeShiCi {
+
+}
+
+#gzTimeYears {
+
 }
