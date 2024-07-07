@@ -4,21 +4,19 @@
  * Repository: https://github.com/xwlc/mini-logo
  */
 
-#welcome {
-  border: 6px solid; border-radius: 8px; border-color: linen;
-  background-color: lightgray; width: 600px; height: 200px;
-  display: flex; align-items: center; justify-content: center;
-}
-
-#showTimeLoc, #showTimeUtc {
-  font-size: 2.5em; font-weight: 400;
+#zWelcome {
+  width: 35%; padding: 1% 0; margin: 0 auto; /* 上右下左 */
+  border: 0.3vw double; border-radius: 0.6vw; border-color: linen;
 }
 
 #ganzhi {
-  font-size: 1.5em; font-weight: 400;
-  display: grid; place-items: center;
+  font-size: 1.5vmin; font-weight: 400;
+}
+
+#timeinfo {
+  font-size: 3vmin; font-weight: 400;
 }
 
 canvas {
-  border: 6px solid; border-color: linen; box-sizing: border-box;
+  border: 0.3vw solid; border-radius: 0.6vw; border-color: linen;
 }

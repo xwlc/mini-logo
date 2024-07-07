@@ -12,8 +12,25 @@
   font-family: var(--x-font-family);
 } /* .XXX 对应 class 可多次引用, #XXX 对应 id 仅可用一次 */
 
+body, main {
+  width: 100vw; height: 100vh;
+}
+
 body {
-  margin: 0; padding: 0; overflow: hidden;
-  width: 100vw; height: 100vh; background-color: gray;
+  margin: 0 auto; padding: 0; box-sizing: border-box;
+}
+
+img {
+  max-width: 100%; height: auto;
+}
+
+/* https://www.runoob.com/css/css-align.html */
+.centerXY { /* 水平 + 垂直 -> 居中(方式壹) */
+  display: grid; place-items: center;
+}
+.middleXY { /* 水平 + 垂直 -> 居中(方式贰) */
   display: flex; align-items: center; justify-content: center;
+}
+.border {
+  border: 0.2vw solid; border-radius: 0.6vw; border-color: linen;
 }

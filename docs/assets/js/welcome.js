@@ -45,15 +45,14 @@ const timezoneOffset = (function() {
 
 // https://drafts.csswg.org/css-color/#named-colors
 function waD9(msg) { return `<a style='color: darkgray'>${msg}</a>` }
-function waR3(msg) { return `<a style='color: red'>${msg}</a>` }
-function waG3(msg) { return `<a style='color: forestgreen'>${msg}</a>` }
-function waB3(msg) { return `<a style='color: royalblue'>${msg}</a>` }
+function waR3(msg) { return `<a style='color: hotpink'>${msg}</a>` }
+function waG3(msg) { return `<a style='color: lawngreen'>${msg}</a>` }
+function waB3(msg) { return `<a style='color: deepskyblue'>${msg}</a>` }
 function waY3(msg) { return `<a style='color: yellow'>${msg}</a>` }
-function waP3(msg) { return `<a style='color: darkorchid'>${msg}</a>` }
-function waO3(msg) { return `<a style='color: chocolate'>${msg}</a>` }
-function waZ1(msg) { return `<a style='color: lightcoral'>${msg}</a>` }
+function waO3(msg) { return `<a style='color: darkorange'>${msg}</a>` }
+function waC3(msg) { return `<a style='color: turquoise'>${msg}</a>` }
+function waZ1(msg) { return `<a style='color: khaki'>${msg}</a>` }
 function waZ2(msg) { return `<a style='color: lightcyan'>${msg}</a>` }
-function waZ3(msg) { return `<a style='color: olive'>${msg}</a>` }
 
 function updateWelcome(init) {
   const now = new Date(); let loc ={}, utc = {}, YMDhmsZ, lunar, flag;
@@ -91,10 +90,10 @@ function updateWelcome(init) {
 
     const gzTimeYears = document.getElementById("gzTimeYears");
     gzTimeYears.innerHTML =
-        waG3(yG) + waB3(yZ) + waR3("❲"+yA+"❳") + waD9('年 ')
-      + waY3(mG) + waO3(mZ) + waD9('月 ')
-      + waP3(dG) + waZ3(dZ) + waD9('日 ➠ ')
-      + waR3(gzN) + waG3(gzH) + waB3(gzM) + waD9(' ￮ '+gzX);
+        waG3(yG)  + waB3(yZ)  + waR3("❲"+yA+"❳") + waD9('年 ')
+      + waG3(mG)  + waB3(mZ)  + waD9('月 ')
+      + waG3(dG)  + waB3(dZ)  + waD9('日 ➠ ')
+      + waO3(gzN) + waY3(gzH) + waC3(gzM) + waD9(' ￮ '+gzX);
     if(gzG) { gzTimeYears.innerHTML += waD9(gzG); }
   }
 
@@ -122,13 +121,15 @@ function updateWelcome(init) {
   if(init) { wUpdate.cancelId = setInterval(updateWelcome, 1000); } // 每秒刷新
   if(wUpdate.titleSecond % 30 == 0) { // 每 15 秒刷新一次
     if(wUpdate.ztreeCount % wUpdate.ztreeMax == 0) {
-      wUpdate.ztreeCount = 1; // [2, 8] 次后清空画布
-      wUpdate.ztreeMax = ZATree.randomInteger(2, 8);
+      wUpdate.ztreeCount = 0; // [1, 9] 次后清空画布
+      wUpdate.ztreeMax = ZATree.randomInteger(1, 9);
       const tree = document.getElementById('zatree');
       const ctx = tree.getContext('2d'); // 清空画布
       ctx.clearRect(0, 0, tree.width, tree.height);
     }
     drawZATree(); wUpdate.ztreeCount++;
+    document.getElementById("zTreeCount").innerHTML =
+    wUpdate.ztreeCount + '/' + wUpdate.ztreeMax;
   }
 }
 
