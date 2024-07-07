@@ -31,7 +31,7 @@ const wFigure = {
 };
 
 const wUpdate = {
-  cancelId: -1, titleSecond: 0, lunarMinute: 0, ztreeCount: 1, ztreeMax: 3,
+  cancelId: -1, titleSecond: 0, lunarMinute: 0, ztreeCount: 0, ztreeMax: 3,
 };
 
 const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -118,8 +118,8 @@ function updateWelcome(init) {
     title.innerHTML = ` Mini ${wEmojis[idx1]} Logo ${wEmojis[idx2]}`;
   }; wUpdate.titleSecond++;
 
-  if(init) { wUpdate.cancelId = setInterval(updateWelcome, 1000); } // 每秒刷新
   if(wUpdate.titleSecond % 30 == 0) { // 每 15 秒刷新一次
+    drawZATree(); wUpdate.ztreeCount++;
     if(wUpdate.ztreeCount % wUpdate.ztreeMax == 0) {
       wUpdate.ztreeCount = 0; // [1, 9] 次后清空画布
       wUpdate.ztreeMax = ZATree.randomInteger(1, 9);
@@ -127,9 +127,13 @@ function updateWelcome(init) {
       const ctx = tree.getContext('2d'); // 清空画布
       ctx.clearRect(0, 0, tree.width, tree.height);
     }
-    drawZATree(); wUpdate.ztreeCount++;
     document.getElementById("zTreeCount").innerHTML =
-    wUpdate.ztreeCount + '/' + wUpdate.ztreeMax;
+      wUpdate.ztreeCount + '/' + wUpdate.ztreeMax;
+  }
+
+  if(init) {
+    drawZATree(); wUpdate.ztreeCount++;
+    wUpdate.cancelId = setInterval(updateWelcome, 1000); // 每秒刷新
   }
 }
 
@@ -137,13 +141,27 @@ function drawZATree() {
   ZATree.draw(document.getElementById('zatree'), { randomColor: true });
 }
 
-function loadMiniLogoCreator() {
+function saveZATreeToPng() {
+  console.log(zlog.red('TODO: ') + '下载 PNG 图片');
+}
+
+function loadMiniLogoCreator(what) { // console.log(what);
   if(wUpdate.cancelId > -1) clearInterval(wUpdate.cancelId);
-  window.removeEventListener('click', loadMiniLogoCreator);
-  document.removeEventListener('DOMContentLoaded', drawZATree);
+  //window.removeEventListener('dblclick', loadMiniLogoCreator);
+
+  const welcome = document.getElementById('zWelcome');
+  welcome.removeEventListener('click', loadMiniLogoCreator);
+  const tree = document.getElementById('zatree');
+  tree.removeEventListener('dblclick', saveZATreeToPng);
+
   const creator = getFullUrl(window.location.href, '/creator.html');
   if(creator) { window.location.href = creator; }
 }
 
-window.addEventListener('click', loadMiniLogoCreator);
-document.addEventListener('DOMContentLoaded', drawZATree);
+//window.addEventListener('dblclick', loadMiniLogoCreator);
+document.addEventListener('DOMContentLoaded', () => {
+  const welcome = document.getElementById('zWelcome');
+  welcome.addEventListener('click', loadMiniLogoCreator);
+  const tree = document.getElementById('zatree');
+  tree.addEventListener('dblclick', saveZATreeToPng);
+});

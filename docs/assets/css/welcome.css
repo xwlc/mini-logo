@@ -5,18 +5,29 @@
  */
 
 #zWelcome {
-  width: 35%; padding: 1% 0; margin: 0 auto; /* 上右下左 */
-  border: 0.3vw double; border-radius: 0.6vw; border-color: linen;
+  width: 35%;
+  padding: 1% 0;
+  margin: 0 auto; /* 上右下左 */
+  border: 0.3vw double;
+  border-radius: 0.6vw;
+  border-color: linen;
 }
 
 #ganzhi {
-  font-size: 1.5vmin; font-weight: 400;
+  font-size: 1.5vmin;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 #timeinfo {
-  font-size: 3vmin; font-weight: 400;
+  font-size: 3vmin;
+  font-weight: 400;
+  cursor: pointer;
 }
 
 canvas {
-  border: 0.3vw solid; border-radius: 0.6vw; border-color: linen;
+  cursor: pointer;
+  border: 0.3vw solid;
+  border-radius: 0.6vw;
+  border-color: linen;
 }
