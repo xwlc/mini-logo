@@ -9,9 +9,11 @@
   <title>Mini Logo</title>
   <link rel="icon" href="assets/img/star.png">
   <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/welcome.css">
 
-  <script type="text/javascript" src="assets/js/lunar.min.js"></script>
   <script type="text/javascript" src="assets/js/zlog.min.js"></script>
+  <script type="text/javascript" src="assets/js/lunar.min.js"></script>
+  <script type="text/javascript" src="assets/js/zatree.min.js"></script>
 
   <script type="text/javascript" src="assets/js/common.js"></script>
   <script type="text/javascript" src="assets/js/welcome.js"></script>
@@ -19,6 +21,7 @@
   <script type="text/javascript" src="assets/js/main.js"></script>
 </head>
 <body>
+
 <div id="welcome">
   <div>
     <div id="ganzhi">
@@ -30,9 +33,8 @@
   </div>
 </div>
 
-<script>
-  updateTimeTitle('init');
-</script>
+<canvas id="zatree" width="800px" height="800px"></canvas>
+<script>updateWelcome('init');</script>
 
 </body>
 </html>
