@@ -3,16 +3,20 @@
 // Created By: Charles Wong 2024-07-05T10:39:41+08:00 Asia/Shanghai
 // Repository: https://github.com/xwlc/mini-logo
 
-const URL = {
-  github: 'https://xwlc.github.io/mini-logo',
-  usrdev: '/docs',
-};
-
 function padNum(val) {
   return val.toString().padStart(2, "0");
 }
 
+function isMobile() {
+  if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function getFullUrl(oldUrl, newUrl) {
+  const URL = { github: 'https://xwlc.github.io/mini-logo', usrdev: '/docs' };
   if(/^https:/i.test(oldUrl)) {
     return URL.github + newUrl;
   } else {

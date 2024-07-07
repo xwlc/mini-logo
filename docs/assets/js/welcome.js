@@ -164,4 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
   welcome.addEventListener('click', loadMiniLogoCreator);
   const tree = document.getElementById('zatree');
   tree.addEventListener('dblclick', saveZATreeToPng);
+
+  if(isMobile()) {
+    document.getElementById('zTree').style.display = "none";
+  }
 });
