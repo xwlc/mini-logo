@@ -25,6 +25,8 @@ img {
 }
 
 /* https://www.runoob.com/css/css-align.html */
+/* https://www.runoob.com/cssref/css-units.html */
+
 .centerXY { /* 水平 + 垂直 -> 居中(方式壹) */
   display: grid; place-items: center;
 }
@@ -33,4 +35,8 @@ img {
 }
 .border {
   border: 0.2vw solid; border-radius: 0.6vw; border-color: linen;
+}
+
+.repoCommitHash {
+  color: darkgray; text-decoration:none;
 }

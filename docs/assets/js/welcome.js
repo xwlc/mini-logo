@@ -54,32 +54,24 @@ function waC3(msg) { return `<a style='color: turquoise'>${msg}</a>` }
 function waZ1(msg) { return `<a style='color: khaki'>${msg}</a>` }
 function waZ2(msg) { return `<a style='color: lightcyan'>${msg}</a>` }
 
-function updateWelcome(init) {
-  const now = new Date(); let loc ={}, utc = {}, YMDhmsZ, lunar, flag;
+function updateWelcome() {
+  const now = new Date(); let loc ={}, utc = {}, YMDhmsZ;
   loc.Y = now.getFullYear(); loc.M = now.getMonth() + 1; loc.D = now.getDate();
   loc.h = now.getHours();    loc.m = now.getMinutes();   loc.s = now.getSeconds();
 
   utc.Y = now.getUTCFullYear(); utc.M = now.getUTCMonth() + 1; utc.D = now.getUTCDate();
   utc.h = now.getUTCHours();    utc.m = now.getUTCMinutes();   utc.s = now.getUTCSeconds();
 
-  flag = Math.floor(loc.m / 15) > wUpdate.lunarMinute;
-  if(wUpdate.lunarMinute == 3 && Math.floor(loc.m / 15) == 0) flag = true;
-  if(init || flag) { // 每刻钟更新农历
+  let upLunar = Math.floor(loc.m / 15) > wUpdate.lunarMinute;
+  if(!wFigure.xN) upLunar = true;
+  if(wUpdate.lunarMinute == 3 && Math.floor(loc.m / 15) == 0) upLunar = true;
+  if(upLunar) { // 每刻钟更新农历
     wUpdate.lunarMinute = Math.floor( loc.m / 15 );
-    lunar = LunarCalendar.lunarNow();
-  }
-
-  loc.M = padNum(loc.M); loc.D = padNum(loc.D);
-  loc.h = padNum(loc.h); loc.m = padNum(loc.m); loc.s = padNum(loc.s);
-
-  utc.M = padNum(utc.M); utc.D = padNum(utc.D);
-  utc.h = padNum(utc.h); utc.m = padNum(utc.m); utc.s = padNum(utc.s);
-
-  if(init || flag) {
-    const yA = lunar.year.gz.y.ani,
-          yG = lunar.year.gz.y.gan, yZ = lunar.year.gz.y.zhi,
-          mG = lunar.year.gz.m.gan, mZ = lunar.year.gz.m.zhi,
-          dG = lunar.year.gz.d.gan, dZ = lunar.year.gz.d.zhi;
+    const lunar = LunarCalendar.lunarNow();
+    const  yA = lunar.year.gz.y.ani,
+           yG = lunar.year.gz.y.gan,     yZ = lunar.year.gz.y.zhi,
+           mG = lunar.year.gz.m.gan,     mZ = lunar.year.gz.m.zhi,
+           dG = lunar.year.gz.d.gan,     dZ = lunar.year.gz.d.zhi;
     const gzN = lunar.time.ganzhi.name, gzX = lunar.time.ganzhi.nick,
           gzH = lunar.time.ganzhi.hour, gzM = lunar.time.ganzhi.mins
           gzG = lunar.time.ganzhi.geng;
@@ -97,11 +89,15 @@ function updateWelcome(init) {
     if(gzG) { gzTimeYears.innerHTML += waD9(gzG); }
   }
 
-  if(init || flag || wUpdate.titleSecond % 2 == 0) {
-    document.getElementById("gzTimeShiCi").innerHTML = // 贴纸人简单动画
-      waZ1(wFigure.xN)+' '+waD9(wFigure.who[wFigure.idx])+' '+waZ2(wFigure.xD);
-    wFigure.idx = ( wFigure.idx + 1 ) % 4;
-  }
+  loc.M = padNum(loc.M); loc.D = padNum(loc.D);
+  loc.h = padNum(loc.h); loc.m = padNum(loc.m); loc.s = padNum(loc.s);
+
+  utc.M = padNum(utc.M); utc.D = padNum(utc.D);
+  utc.h = padNum(utc.h); utc.m = padNum(utc.m); utc.s = padNum(utc.s);
+
+  document.getElementById("gzTimeShiCi").innerHTML = // 贴纸人简单动画
+    waZ1(wFigure.xN)+' '+waD9(wFigure.who[wFigure.idx])+' '+waZ2(wFigure.xD);
+  wFigure.idx = ( wFigure.idx + 1 ) % 4;
 
   YMDhmsZ  = loc.Y + '-' + loc.M + '-' + loc.D + ' ';
   YMDhmsZ += loc.h + ':' + loc.m + ':' + loc.s + ' ' + timezoneOffset;
@@ -119,7 +115,6 @@ function updateWelcome(init) {
   }; wUpdate.titleSecond++;
 
   if(wUpdate.titleSecond % 30 == 0) { // 每 15 秒刷新一次
-    drawZATree(); wUpdate.ztreeCount++;
     if(wUpdate.ztreeCount % wUpdate.ztreeMax == 0) {
       wUpdate.ztreeCount = 0; // [1, 9] 次后清空画布
       wUpdate.ztreeMax = ZATree.randomInteger(1, 9);
@@ -127,13 +122,12 @@ function updateWelcome(init) {
       const ctx = tree.getContext('2d'); // 清空画布
       ctx.clearRect(0, 0, tree.width, tree.height);
     }
-    document.getElementById("zTreeCount").innerHTML =
-      wUpdate.ztreeCount + '/' + wUpdate.ztreeMax;
-  }
-
-  if(init) {
     drawZATree(); wUpdate.ztreeCount++;
-    wUpdate.cancelId = setInterval(updateWelcome, 1000); // 每秒刷新
+    const zatTitle = document.getElementById('zTreeTitle');
+    if(zatTitle.innerHTML == 'Download') {
+      zatTitle.removeEventListener('click', saveZATreeAsIamge);
+    }
+    zatTitle.innerHTML = wUpdate.ztreeCount + '/' + wUpdate.ztreeMax;
   }
 }
 
@@ -141,18 +135,39 @@ function drawZATree() {
   ZATree.draw(document.getElementById('zatree'), { randomColor: true });
 }
 
-function saveZATreeToPng() {
-  console.log(zlog.red('TODO: ') + '下载 PNG 图片');
+function saveZATreeAsIamge() {
+  const now = new Date(); let Y, M, D, h, m, s;
+  Y = now.getFullYear(); M = now.getMonth() + 1; D = now.getDate();
+  h = now.getHours();    m = now.getMinutes();   s = now.getSeconds();
+
+  M = padNum(M); D = padNum(D);
+  h = padNum(h); m = padNum(m); s = padNum(s);
+
+  const a = document.createElement('a');
+  a.download = 'ZATree-'+Y+'-'+M+'-'+D+'-'+'T'+h+'-'+m+'-'+s;
+  a.href = ZATree.base64(document.getElementById('zatree'));
+  a.dispatchEvent(new MouseEvent('click'));
+}
+
+function downloadZATreeIamge() {
+  const zatTitle = document.getElementById('zTreeTitle');
+  if(zatTitle.innerHTML == 'Download') { return; }
+  zatTitle.innerHTML = 'Download';
+  zatTitle.style.cssText += 'cursor: pointer';
+  zatTitle.style.cssText += 'border: 0.1vw solid';
+  zatTitle.style.cssText += 'border-color: yellow';
+  zatTitle.style.cssText += 'border-radius: 0.2vw';
+  zatTitle.addEventListener('click', saveZATreeAsIamge);
 }
 
 function loadMiniLogoCreator(what) { // console.log(what);
   if(wUpdate.cancelId > -1) clearInterval(wUpdate.cancelId);
   //window.removeEventListener('dblclick', loadMiniLogoCreator);
 
-  const welcome = document.getElementById('zWelcome');
-  welcome.removeEventListener('click', loadMiniLogoCreator);
+  const ganzhi = document.getElementById('zGanZhiTime');
+  ganzhi.removeEventListener('click', loadMiniLogoCreator);
   const tree = document.getElementById('zatree');
-  tree.removeEventListener('dblclick', saveZATreeToPng);
+  tree.removeEventListener('click', downloadZATreeIamge);
 
   const creator = getFullUrl(window.location.href, '/creator.html');
   if(creator) { window.location.href = creator; }
@@ -160,12 +175,21 @@ function loadMiniLogoCreator(what) { // console.log(what);
 
 //window.addEventListener('dblclick', loadMiniLogoCreator);
 document.addEventListener('DOMContentLoaded', () => {
-  const welcome = document.getElementById('zWelcome');
-  welcome.addEventListener('click', loadMiniLogoCreator);
+  const ganzhi = document.getElementById('zGanZhiTime');
+  ganzhi.addEventListener('click', loadMiniLogoCreator);
   const tree = document.getElementById('zatree');
-  tree.addEventListener('dblclick', saveZATreeToPng);
+  tree.addEventListener('click', downloadZATreeIamge);
 
-  if(isMobile()) {
-    document.getElementById('zTree').style.display = "none";
-  }
+  tree.width  = window.screen.width  * 0.6;
+  tree.height = window.screen.height * 0.6;
+
+  wUpdate.ztreeCount++; updateWelcome(); drawZATree();
+  wUpdate.cancelId = setInterval(updateWelcome, 1000); // 每秒刷新
+
+  let repo; // 加载当前仓库更新日期及提交 ID
+  repo = document.getElementById('zRepoUpdateTime');
+  repo.innerHTML = 'Update Time : ' + repoUpdateTime;
+  repo = document.getElementById('zRepoCommitHash');
+  repo.innerHTML = 'Commit Hash : ' + repoCommitHash;
+  repo.href = repositoryHome;
 });
